@@ -1,7 +1,6 @@
 import {
   Badge,
   IndexTable,
-  LegacyCard,
   Text,
   useIndexResourceState,
 } from "@shopify/polaris";
@@ -74,25 +73,23 @@ export default function SimpleIndexTableExample() {
   );
 
   return (
-    <LegacyCard>
-      <IndexTable
-        resourceName={resourceName}
-        itemCount={orders.length}
-        selectedItemsCount={
-          allResourcesSelected ? "All" : selectedResources.length
-        }
-        onSelectionChange={handleSelectionChange}
-        headings={[
-          { title: "Order" },
-          { title: "Date" },
-          { title: "Customer" },
-          { title: "Total", alignment: "end" },
-          { title: "Payment status" },
-          { title: "Fulfillment status" },
-        ]}
-      >
-        {rowMarkup}
-      </IndexTable>
-    </LegacyCard>
+    <IndexTable
+      resourceName={resourceName}
+      itemCount={orders.length}
+      selectedItemsCount={
+        allResourcesSelected ? "All" : selectedResources.length
+      }
+      onSelectionChange={handleSelectionChange}
+      headings={[
+        { title: "Order" },
+        { title: "Date" },
+        { title: "Customer" },
+        { title: "Total", alignment: "end" },
+        { title: "Payment status" },
+        { title: "Fulfillment status" },
+      ]}
+    >
+      {rowMarkup}
+    </IndexTable>
   );
 }
