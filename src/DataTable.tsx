@@ -1,10 +1,252 @@
-import { DataTable, Page } from "@shopify/polaris";
+import { DataTable, Link, Page, TableData } from "@shopify/polaris";
+import { useCallback, useState } from "react";
 
-export function DataTableExample() {
-  const rows = [
-    ["Emerald Silk Gown", "$875.00", 124689, 140, "$122,500.00"],
-    ["Mauve Cashmere Scarf", "$230.00", 124533, 83, "$19,090.00"],
+export default function FullDataTableExample() {
+  const [sortedRows, setSortedRows] = useState<TableData[][] | null>(null);
+
+  const initiallySortedRows: TableData[][] = [
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="emerald-silk-gown"
+      >
+        Emerald Silk Gown
+      </Link>,
+      "$875.00",
+      124689,
+      140,
+      "$121,500.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="mauve-cashmere-scarf"
+      >
+        Mauve Cashmere Scarf
+      </Link>,
+      "$230.00",
+      124533,
+      83,
+      "$19,090.00",
+    ],
+    [
+      <Link
+        removeUnderline
+        url="https://www.example.com"
+        key="navy-merino-wool"
+      >
+        Navy Merino Wool Blazer with khaki chinos and yellow belt
+      </Link>,
+      "$445.00",
+      124518,
+      32,
+      "$14,240.00",
+    ],
   ];
+
+  const rows = sortedRows ? sortedRows : initiallySortedRows;
+  const handleSort = useCallback(
+    (index: number, direction: "ascending" | "descending") =>
+      setSortedRows(sortCurrency(rows, index, direction)),
+    [rows]
+  );
 
   return (
     <Page title="Sales by product">
@@ -25,7 +267,28 @@ export function DataTableExample() {
         ]}
         rows={rows}
         totals={["", "", "", 255, "$155,830.00"]}
+        sortable={[false, true, false, false, true]}
+        defaultSortDirection="descending"
+        initialSortColumnIndex={4}
+        onSort={handleSort}
+        footerContent={`Showing ${rows.length} of ${rows.length} results`}
+        hasZebraStripingOnData
+        increasedTableDensity
+        stickyHeader
       />
     </Page>
   );
+
+  function sortCurrency(
+    rows: TableData[][],
+    index: number,
+    direction: "ascending" | "descending"
+  ): TableData[][] {
+    return [...rows].sort((rowA, rowB) => {
+      const amountA = parseFloat((rowA[index] || 0).toString().substring(1));
+      const amountB = parseFloat((rowB[index] || 0).toString().substring(1));
+
+      return direction === "descending" ? amountB - amountA : amountA - amountB;
+    });
+  }
 }
