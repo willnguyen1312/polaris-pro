@@ -6,7 +6,7 @@ export default function PopoverContentExample() {
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
-    []
+    [],
   );
 
   const activator = (

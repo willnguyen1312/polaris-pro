@@ -245,7 +245,7 @@ export default function FullDataTableExample() {
   const handleSort = useCallback(
     (index: number, direction: "ascending" | "descending") =>
       setSortedRows(sortCurrency(rows, index, direction)),
-    [rows]
+    [rows],
   );
 
   return (
@@ -282,7 +282,7 @@ export default function FullDataTableExample() {
   function sortCurrency(
     rows: TableData[][],
     index: number,
-    direction: "ascending" | "descending"
+    direction: "ascending" | "descending",
   ): TableData[][] {
     return [...rows].sort((rowA, rowB) => {
       const amountA = parseFloat((rowA[index] || 0).toString().substring(1));
