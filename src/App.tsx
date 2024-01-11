@@ -22,9 +22,7 @@ function PopoverWithActionListExample() {
     <div
       onClick={(e) => {
         e.stopPropagation();
-        const event = new MouseEvent("click", {
-          bubbles: true,
-        });
+        const event = new MouseEvent("click");
         window.dispatchEvent(event);
       }}
     >
