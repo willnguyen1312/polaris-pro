@@ -18,7 +18,11 @@
     "react-router-dom": "^6.21.2"
   },
   "devDependencies": {
+<<<<<<< HEAD
     "@namnode/vite-plugin-inspect-react": "^1.16.6",
+=======
+    "@namnode/vite-plugin-inspect-react": "^1.16.7",
+>>>>>>> 8ba173e (Upgrade deps 💞)
     "@types/node": "^20.11.0",
     "@types/react": "^18.2.47",
     "@types/react-dom": "^18.2.18",
