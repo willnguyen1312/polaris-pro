@@ -10,20 +10,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@shopify/polaris": "^12.9.0",
-    "@shopify/polaris-icons": "^7.13.0",
+    "@shopify/polaris": "^12.10.0",
+    "@shopify/polaris-icons": "^8.0.0",
     "@shopify/polaris-tokens": "^8.5.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.21.2"
   },
   "devDependencies": {
-    "@namnode/vite-plugin-inspect-react": "^1.16.7",
-    "@types/node": "^20.11.0",
-    "@types/react": "^18.2.47",
+    "@namnode/vite-plugin-inspect-react": "^1.21.0",
+    "@types/node": "^20.11.3",
+    "@types/react": "^18.2.48",
     "@types/react-dom": "^18.2.18",
-    "@typescript-eslint/eslint-plugin": "^6.18.1",
-    "@typescript-eslint/parser": "^6.18.1",
+    "@typescript-eslint/eslint-plugin": "^6.19.0",
+    "@typescript-eslint/parser": "^6.19.0",
     "@vitejs/plugin-react": "^4.2.1",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",

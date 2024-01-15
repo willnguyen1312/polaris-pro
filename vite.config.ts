@@ -9,9 +9,7 @@ export default defineConfig({
   plugins: [
     Inspect(),
     inspectReact({
-      formatDataInspectId(id) {
-        return id.substring(__dirname.length + 1);
-      },
+      base: __dirname,
     }),
     // ReactInspector(),
     react(),

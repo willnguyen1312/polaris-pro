@@ -4,7 +4,7 @@ import enTranslations from "@shopify/polaris/locales/en.json";
 import ReactDOM from "react-dom/client";
 // import App from "./App";
 
-const data: number[] = [];
+const data: number[] = [1, 2, 3];
 const App = () => {
   return (
     <>
