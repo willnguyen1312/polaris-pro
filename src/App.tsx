@@ -15,15 +15,14 @@ function PopoverWithActionListExample() {
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
-    [],
+    []
   );
 
   const activator = (
     <div
       onClick={(e) => {
         e.stopPropagation();
-        const event = new MouseEvent("click");
-        window.dispatchEvent(event);
+        window.dispatchEvent(new MouseEvent("click"));
       }}
     >
       <Button
