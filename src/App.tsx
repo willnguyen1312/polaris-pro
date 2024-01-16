@@ -3,10 +3,10 @@ import { useCallback, useState } from "react";
 
 export default function App() {
   return (
-    <>
+    <div>
       <PopoverWithActionListExample />
       <PopoverWithActionListExample />
-    </>
+    </div>
   );
 }
 
@@ -22,7 +22,6 @@ function PopoverWithActionListExample() {
     <div
       onClick={(e) => {
         e.stopPropagation();
-        window.dispatchEvent(new MouseEvent("click"));
       }}
     >
       <Button
