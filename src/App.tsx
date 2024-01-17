@@ -1,5 +1,5 @@
 import { ActionList, Button, Popover } from "@shopify/polaris";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
 window.addEventListener("click", () => {
   alert("window click");
@@ -10,6 +10,10 @@ document.addEventListener("click", () => {
 });
 
 export default function App() {
+  useEffect(() => {
+    console.log("App mounted");
+  }, []);
+
   return (
     <div>
       <PopoverWithActionListExample />
@@ -30,11 +34,7 @@ function PopoverWithActionListExample() {
     <div
       onClick={(e) => {
         e.stopPropagation();
-        document.body.dispatchEvent(
-          new MouseEvent("click", {
-            bubbles: true,
-          })
-        );
+        window.dispatchEvent(new CustomEvent("click"));
       }}
     >
       <Button
