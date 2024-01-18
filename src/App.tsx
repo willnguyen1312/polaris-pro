@@ -1,5 +1,5 @@
-import { ActionList, Button, Popover } from "@shopify/polaris";
-import { useCallback, useEffect, useState } from "react";
+import { ActionList, Box, Button, Popover } from "@shopify/polaris";
+import { useCallback, useEffect, useRef, useState } from "react";
 
 window.addEventListener("click", () => {
   alert("window click");
@@ -10,14 +10,25 @@ document.addEventListener("click", () => {
 });
 
 export default function App() {
+  const boxRef = useRef<HTMLElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
+
   useEffect(() => {
     console.log("App mounted");
+
+    console.log("boxRef.current", boxRef.current);
+
+    console.log("buttonRef.current", buttonRef.current);
   }, []);
 
   return (
     <div>
-      <PopoverWithActionListExample />
-      <PopoverWithActionListExample />
+      <Box ref={boxRef}>
+        <PopoverWithActionListExample />
+        <PopoverWithActionListExample />
+      </Box>
+
+      {/* <Button ref={buttonRef}>Hi button</Button> */}
     </div>
   );
 }
