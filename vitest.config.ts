@@ -10,7 +10,7 @@ export default mergeConfig(
       globals: true,
       include: ["**/*.test.{ts,tsx}"],
       setupFiles: ["./setupTest.ts"],
-      environment: "jsdom",
+      environment: "happy-dom",
       restoreMocks: true,
     },
   })
