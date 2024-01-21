@@ -12,7 +12,7 @@ describe("Playground", () => {
     render(
       <PolarisTestProvider>
         <Playground />
-      </PolarisTestProvider>,
+      </PolarisTestProvider>
     );
 
     const button1 = screen.getByText("Button 1");
