@@ -38,7 +38,7 @@ function PopoverWithActionListExample() {
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
-    []
+    [],
   );
 
   const activator = (

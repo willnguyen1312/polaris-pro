@@ -35,7 +35,7 @@ const ButtonCell = (props: {
         // The condition below will return false if event comes from the popover content
         // and true if it comes from the activator because it is a direct child of the current div element
         const isTriggeredByActivator = event.currentTarget.contains(
-          event.target as Node
+          event.target as Node,
         );
 
         // If event comes from the activator, we dispatch a mouse click event on the window object

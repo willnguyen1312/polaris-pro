@@ -9,6 +9,6 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
   // <React.StrictMode>
   <AppProvider i18n={enTranslations}>
     <Playground />
-  </AppProvider>
+  </AppProvider>,
   // </React.StrictMode>
 );
