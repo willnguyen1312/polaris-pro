@@ -5,11 +5,7 @@ export default defineConfig({
     globals: true,
     include: ["**/*.test.{ts,tsx}"],
     setupFiles: ["./setupTest.ts"],
-    // environment: "jsdom",
+    environment: "jsdom",
     restoreMocks: true,
-    browser: {
-      name: "chromium",
-      headless: false,
-    },
   },
 });

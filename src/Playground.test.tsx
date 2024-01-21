@@ -1,31 +1,37 @@
-import { AppProvider } from "@shopify/polaris";
+import { PolarisTestProvider } from "@shopify/polaris";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
+import { vi } from "vitest";
 
 import { Playground } from "./Playground";
-
-window.matchMedia = window.matchMedia || (() => ({ matches: false }));
 
 describe("Playground", () => {
   it("should pass", async () => {
     const user = userEvent.setup();
 
     render(
-      <AppProvider i18n={{}}>
+      <PolarisTestProvider>
         <Playground />
-      </AppProvider>
+      </PolarisTestProvider>
     );
 
     const button1 = screen.getByText("Button 1");
     const button2 = screen.getByText("Button 2");
 
+    const windowDispatchEventSpy = vi.spyOn(window, "dispatchEvent");
+
     await user.click(button1);
-    await user.click(button1);
+
+    const popContent1 = screen.getByText("Pop 1");
+
+    await user.click(popContent1);
+
+    expect(windowDispatchEventSpy).toHaveBeenCalledTimes(1);
+
     await user.click(button2);
 
-    const closeAllButton = screen.getByText("Close all");
-    await user.click(closeAllButton);
+    expect(screen.getByText("Pop 2")).toBeInTheDocument();
 
-    expect(screen.queryByText("Pop 1")).not.toBeInTheDocument();
+    expect(windowDispatchEventSpy).toHaveBeenCalledTimes(2);
   });
 });
