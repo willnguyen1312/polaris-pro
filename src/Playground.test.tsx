@@ -7,6 +7,10 @@ import { Playground } from "./Playground";
 
 describe("Playground", () => {
   it("should pass", async () => {
+    await fetch("https://jsonplaceholder.typicode.com/todos/1")
+      .then((response) => response.json())
+      .then((json) => console.log(json));
+
     const user = userEvent.setup();
 
     render(
