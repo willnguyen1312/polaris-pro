@@ -1,67 +1,44 @@
-import { Popover } from "@shopify/polaris";
-import React from "react";
+import { Button, Frame, Modal, TextContainer } from "@shopify/polaris";
+import { useCallback, useState } from "react";
 
-export const Playground = () => {
+export default function ModalExample() {
+  const [active, setActive] = useState(true);
+
+  const handleChange = useCallback(() => setActive(!active), [active]);
+
+  const activator = <Button onClick={handleChange}>Open</Button>;
+
   return (
-    <>
-      <ButtonCell buttonText="Button 1">Pop 1</ButtonCell>
-
-      <ButtonCell buttonText="Button 2">Pop 2</ButtonCell>
-
-      <button
-        onClick={() => {
-          window.dispatchEvent(new MouseEvent("click"));
-        }}
-      >
-        Close all
-      </button>
-    </>
-  );
-};
-
-const ButtonCell = (props: {
-  children: React.ReactNode;
-  buttonText: string;
-}) => {
-  const [active, setActive] = React.useState(false);
-  return (
-    <div
-      onClick={(event) => {
-        // Due to how Portal API and event system work in React
-        // The event can come from the activator or the popover content even though popover is not a direct child in the DOM
-        // We stop propagation to prevent the table row from being (de)selected
-        event.stopPropagation();
-
-        // The condition below will return false if event comes from the popover content
-        // and true if it comes from the activator because it is a direct child of the current div element
-        const isTriggeredByActivator = event.currentTarget.contains(
-          event.target as Node,
-        );
-
-        // If event comes from the activator, we dispatch a mouse click event on the window object
-        // to inform other Popover components that users already clicked outside
-        if (isTriggeredByActivator) {
-          window.dispatchEvent(new MouseEvent("click"));
-        }
-      }}
-    >
-      <Popover
-        onClose={() => {
-          setActive(false);
-        }}
-        active={active}
-        activator={
-          <button
-            onClick={() => {
-              setActive(!active);
-            }}
-          >
-            {props.buttonText}
-          </button>
-        }
-      >
-        {props.children}
-      </Popover>
+    <div style={{ height: "500px" }}>
+      <Frame>
+        <Modal
+          size="large"
+          activator={activator}
+          open={active}
+          onClose={handleChange}
+          title="Reach more shoppers with Instagram product tags"
+          primaryAction={{
+            content: "Add Instagram",
+            onAction: handleChange,
+          }}
+          secondaryActions={[
+            {
+              content: "Learn more",
+              onAction: handleChange,
+            },
+          ]}
+        >
+          <Modal.Section>
+            <TextContainer>
+              <p>
+                Use Instagram posts to share your products with millions of
+                people. Let shoppers buy from your store without leaving
+                Instagram.
+              </p>
+            </TextContainer>
+          </Modal.Section>
+        </Modal>
+      </Frame>
     </div>
   );
-};
+}

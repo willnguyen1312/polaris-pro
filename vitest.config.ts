@@ -13,5 +13,5 @@ export default mergeConfig(
       environment: "happy-dom",
       restoreMocks: true,
     },
-  })
+  }),
 );

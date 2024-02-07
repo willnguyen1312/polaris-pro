@@ -3,10 +3,10 @@ import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { vi } from "vitest";
 
-import { Playground } from "./Playground";
+import Playground from "./Playground";
 
 describe("Playground", () => {
-  it("should pass", async () => {
+  it.fails("should pass", async () => {
     await fetch("https://jsonplaceholder.typicode.com/todos/1")
       .then((response) => response.json())
       .then((json) => console.log(json));

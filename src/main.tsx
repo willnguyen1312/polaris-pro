@@ -1,42 +1,43 @@
 import { AppProvider } from "@shopify/polaris";
 import "@shopify/polaris/build/esm/styles.css";
 import enTranslations from "@shopify/polaris/locales/en.json";
-import { useState } from "react";
+import React from "react";
 import ReactDOM from "react-dom/client";
+import Playground from "./Playground";
 // import App from "./App";
 
-function Input(props) {
-  return <input {...props} />;
-}
+// function Input(props) {
+//   return <input {...props} />;
+// }
 
-const App = () => {
-  const [value, setValue] = useState("Hi");
+// const App = () => {
+//   const [value, setValue] = useState("Hi");
 
-  const renderMe = () => {
-    console.log("renderMe");
-    return (
-      <Input
-        value={value}
-        onChange={(event) => {
-          setValue(event.target.value);
-        }}
-        type="text"
-      />
-    );
-  };
+//   const renderMe = () => {
+//     console.log("renderMe");
+//     return (
+//       <Input
+//         value={value}
+//         onChange={(event) => {
+//           setValue(event.target.value);
+//         }}
+//         type="text"
+//       />
+//     );
+//   };
 
-  return (
-    <>
-      <h1>Hello World</h1>
+//   return (
+//     <>
+//       <h1>Hello World</h1>
 
-      <HappenToMe renderMe={renderMe} />
-    </>
-  );
-};
+//       <HappenToMe renderMe={renderMe} />
+//     </>
+//   );
+// };
 
-function HappenToMe({ renderMe }: any) {
-  return <div>{renderMe()}</div>;
-}
+// function HappenToMe({ renderMe }: any) {
+//   return <div>{renderMe()}</div>;
+// }
 
 // export default function useForm(defaultState, label) {
 //   const [state, setState] = useState(defaultState);
@@ -82,9 +83,9 @@ function HappenToMe({ renderMe }: any) {
 // }
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  // <React.StrictMode>
-  <AppProvider i18n={enTranslations}>
-    <App />
-  </AppProvider>
-  // </React.StrictMode>
+  <React.StrictMode>
+    <AppProvider i18n={enTranslations}>
+      <Playground />
+    </AppProvider>
+  </React.StrictMode>,
 );
