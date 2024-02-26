@@ -3,8 +3,8 @@ import "@shopify/polaris/build/esm/styles.css";
 import enTranslations from "@shopify/polaris/locales/en.json";
 import React from "react";
 import ReactDOM from "react-dom/client";
-import Playground from "./Playground";
-// import App from "./App";
+// import Playground from "./Playground";
+import App from "./EmptyState";
 
 // function Input(props) {
 //   return <input {...props} />;
@@ -85,7 +85,7 @@ import Playground from "./Playground";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AppProvider i18n={enTranslations}>
-      <Playground />
+      <App />
     </AppProvider>
-  </React.StrictMode>,
+  </React.StrictMode>
 );
