@@ -1,5 +1,0 @@
-@define-mixin truncate {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}

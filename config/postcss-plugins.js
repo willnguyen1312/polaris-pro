@@ -20,9 +20,6 @@ const mediaQueriesCssPath = path.resolve(
 
 export default [
   postcssImport(),
-  // postcssMixins({
-  //   mixinsDir: path.join(__dirname, 'postcss-mixins'),
-  // }),
   postcssNesting({
     // The way native CSS nesting & SASS nesting behave with complex selectors
     // differ; SASS expands out every selector into a comma separated list, but
