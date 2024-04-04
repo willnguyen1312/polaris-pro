@@ -1,20 +1,17 @@
 import react from "@vitejs/plugin-react";
 import { defineConfig } from "vite";
-// import ReactInspector from "vite-plugin-react-inspector";
-import { inspectReact } from "@namnode/vite-plugin-inspect-react";
 import Inspect from "vite-plugin-inspect";
+import { generateScopedName } from "./config/rollup/namespaced-classname.mjs";
 
-// https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [
-    Inspect(),
-    inspectReact({
-      base: __dirname,
-    }),
-    // ReactInspector(),
-    react(),
-  ],
+  plugins: [Inspect(), react()],
   server: {
     open: true,
+  },
+  css: {
+    modules: {
+      generateScopedName: generateScopedName({ includeHash: false }),
+      globalModulePaths: [/global\.css$/],
+    },
   },
 });

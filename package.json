@@ -11,12 +11,29 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@shopify/polaris": "^12.23.0",
+    "@csstools/postcss-global-data": "^2.1.1",
+    "./polaris": "^12.23.0",
     "@shopify/polaris-icons": "^8.9.0",
-    "@shopify/polaris-tokens": "^8.9.0",
+    "@shopify/polaris-tokens": "^8.10.0",
+    "@shopify/postcss-plugin": "^5.0.2",
+    "@types/react": "*",
+    "@types/react-dom": "*",
+    "@types/react-transition-group": "^4.4.2",
+    "change-case": "^5.4.4",
+    "postcss": "^8.3.1",
+    "postcss-custom-media": "^10.0.1",
+    "postcss-discard-comments": "^6.0.1",
+    "postcss-import": "^15.1.0 ",
+    "postcss-loader": "^4.2.0",
+    "postcss-mixins": "^9.0.4",
+    "postcss-modules": "^4.2.2",
+    "postcss-nesting": "^12.0.2",
+    "postcss-pxtorem": "^6.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^6.22.3"
+    "react-fast-compare": "^3.2.0",
+    "react-router-dom": "^6.22.3",
+    "react-transition-group": "^4.4.2"
   },
   "devDependencies": {
     "@namnode/vite-plugin-inspect-react": "^1.21.0",

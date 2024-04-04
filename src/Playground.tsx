@@ -1,8 +1,8 @@
-import { Button, Frame, Link, Modal, TextContainer } from "@shopify/polaris";
 import { useCallback, useState } from "react";
+import { Button, Frame, Link, Modal, TextContainer } from "./polaris";
 
 export default function ModalExample() {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const handleChange = useCallback(() => setActive(!active), [active]);
 

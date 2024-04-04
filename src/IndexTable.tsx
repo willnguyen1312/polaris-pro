@@ -1,4 +1,5 @@
-import type { IndexFiltersProps, TabProps } from "@shopify/polaris";
+import { useCallback, useState } from "react";
+import type { IndexFiltersProps, TabProps } from "./polaris";
 import {
   Badge,
   ChoiceList,
@@ -11,8 +12,7 @@ import {
   useBreakpoints,
   useIndexResourceState,
   useSetIndexFiltersMode,
-} from "@shopify/polaris";
-import { useCallback, useState } from "react";
+} from "./polaris";
 
 export default function IndexTableWithViewsSearchFilterSorting() {
   const sleep = (ms: number) =>
@@ -126,37 +126,37 @@ export default function IndexTableWithViewsSearchFilterSorting() {
           loading: false,
         };
   const [accountStatus, setAccountStatus] = useState<string[] | undefined>(
-    undefined,
+    undefined
   );
   const [moneySpent, setMoneySpent] = useState<[number, number] | undefined>(
-    undefined,
+    undefined
   );
   const [taggedWith, setTaggedWith] = useState("");
   const [queryValue, setQueryValue] = useState("");
 
   const handleAccountStatusChange = useCallback(
     (value: string[]) => setAccountStatus(value),
-    [],
+    []
   );
   const handleMoneySpentChange = useCallback(
     (value: [number, number]) => setMoneySpent(value),
-    [],
+    []
   );
   const handleTaggedWithChange = useCallback(
     (value: string) => setTaggedWith(value),
-    [],
+    []
   );
   const handleFiltersQueryChange = useCallback(
     (value: string) => setQueryValue(value),
-    [],
+    []
   );
   const handleAccountStatusRemove = useCallback(
     () => setAccountStatus(undefined),
-    [],
+    []
   );
   const handleMoneySpentRemove = useCallback(
     () => setMoneySpent(undefined),
-    [],
+    []
   );
   const handleTaggedWithRemove = useCallback(() => setTaggedWith(""), []);
   const handleQueryValueRemove = useCallback(() => setQueryValue(""), []);
@@ -304,7 +304,7 @@ export default function IndexTableWithViewsSearchFilterSorting() {
   const rowMarkup = orders.map(
     (
       { id, order, date, customer, total, paymentStatus, fulfillmentStatus },
-      index,
+      index
     ) => (
       <IndexTable.Row
         id={id}
@@ -327,7 +327,7 @@ export default function IndexTableWithViewsSearchFilterSorting() {
         <IndexTable.Cell>{paymentStatus}</IndexTable.Cell>
         <IndexTable.Cell>{fulfillmentStatus}</IndexTable.Cell>
       </IndexTable.Row>
-    ),
+    )
   );
 
   return (

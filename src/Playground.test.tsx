@@ -1,7 +1,7 @@
-import { PolarisTestProvider } from "@shopify/polaris";
 import { render, screen } from "@testing-library/react";
 import { userEvent } from "@testing-library/user-event";
 import { vi } from "vitest";
+import { PolarisTestProvider } from "./polaris";
 
 import Playground from "./Playground";
 
@@ -16,7 +16,7 @@ describe("Playground", () => {
     render(
       <PolarisTestProvider>
         <Playground />
-      </PolarisTestProvider>,
+      </PolarisTestProvider>
     );
 
     const button1 = screen.getByText("Button 1");

@@ -1,5 +1,5 @@
-import { ActionList, Box, Button, Popover } from "@shopify/polaris";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { ActionList, Box, Button, Popover } from "./polaris";
 
 window.addEventListener("click", () => {
   alert("window click");
@@ -38,7 +38,7 @@ function PopoverWithActionListExample() {
 
   const togglePopoverActive = useCallback(
     () => setPopoverActive((popoverActive) => !popoverActive),
-    [],
+    []
   );
 
   const activator = (

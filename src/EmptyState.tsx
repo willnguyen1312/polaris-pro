@@ -1,4 +1,4 @@
-import { Card, EmptyState } from "@shopify/polaris";
+import { Card, EmptyState } from "./polaris";
 
 function EmptyStateExample() {
   return (

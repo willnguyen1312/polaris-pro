@@ -1,0 +1,8 @@
+.Action {
+  display: flex;
+  flex: 1;
+}
+
+.ActionDivider {
+  margin-bottom: var(--p-space-100);
+}
