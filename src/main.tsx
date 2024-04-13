@@ -12,5 +12,5 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
     <AppProvider i18n={enTranslations}>
       <App />
     </AppProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
