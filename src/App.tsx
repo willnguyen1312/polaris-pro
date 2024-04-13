@@ -44,10 +44,10 @@ export default function App() {
         onCheckboxChange: () => {
           setValue((value) => !value);
           setItems((items: ActionListProps["items"] = []) => {
-            return items.map((item, index) => {
+            return items.map((item) => {
               return {
                 id: item.id,
-                content: `${item.content} ${index}`,
+                content: `${item.content?.split("").reverse().join("")}`,
               };
             });
           });
@@ -88,7 +88,14 @@ function PopoverWithActionListExample() {
       autofocusTarget="first-node"
       onClose={togglePopoverActive}
     >
-      <div style={{ height: "100%", display: "flex", flexDirection: "column" }}>
+      <div
+        style={{
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          width: 350,
+        }}
+      >
         <div
           style={{
             overflowY: "auto",
