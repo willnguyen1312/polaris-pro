@@ -1,8 +1,8 @@
 import { faker } from "@faker-js/faker";
-import { ActionListProps, Button, Popover, Text } from "@shopify/polaris";
+import { Box, Button, Popover } from "@shopify/polaris";
 import { useState } from "react";
 
-const items: ActionListProps["items"] = Array.from({ length: 20 }, () => {
+const items = Array.from({ length: 20 }, () => {
   return {
     content: faker.lorem.words(2),
     id: faker.string.uuid(),
@@ -13,29 +13,65 @@ const noop = () => {};
 
 export default function App() {
   const [value, setValue] = useState(0);
+  const [active, setActive] = useState(false);
 
   return (
     <Popover
-      active
-      activator={<Button>More actions</Button>}
-      autofocusTarget="first-node"
-      onClose={noop}
-    >
-      <div
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-          width: 350,
-        }}
-      >
-        <div
-          style={{
-            overflowY: "auto",
-            overscrollBehavior: "contain",
+      active={active}
+      fullHeight
+      activator={
+        <Button
+          onClick={() => {
+            setActive(!active);
           }}
         >
-          {items?.map((item) => {
+          More actions
+        </Button>
+      }
+      onClose={noop}
+    >
+      <Component value={value} setValue={setValue} items={items} />
+    </Popover>
+  );
+}
+
+// function AnotherComponent() {
+//   const [selected, setSelected] = useState("today");
+
+//   const handleSelectChange = useCallback(
+//     (value: string) => setSelected(value),
+//     []
+//   );
+
+//   const options = [
+//     { label: "Today", value: "today" },
+//     { label: "Yesterday", value: "yesterday" },
+//     { label: "Last 7 days", value: "lastWeek" },
+//   ];
+
+//   return (
+//     <Box padding="150">
+//       {Array.from({ length: 20 }, (_, index) => {
+//         return (
+//           <Select
+//             key={index}
+//             label="Date range"
+//             options={options}
+//             onChange={handleSelectChange}
+//             value={selected}
+//           />
+//         );
+//       })}
+//     </Box>
+//   );
+// }
+
+const Component = ({ items, setValue, value }: any) => {
+  return (
+    <>
+      <Popover.Pane captureOverscroll>
+        <div>
+          {items?.map((item: any) => {
             return (
               <div
                 key={item.id}
@@ -49,16 +85,17 @@ export default function App() {
             );
           })}
         </div>
+      </Popover.Pane>
 
-        <Text as="p">Value: {value}</Text>
+      <Box position="sticky" insetBlockEnd="0">
         <Button
           onClick={() => {
-            setValue((value) => value + 1);
+            setValue((value: any) => value + 1);
           }}
         >
-          Click
+          Click: {value.toString()} times
         </Button>
-      </div>
-    </Popover>
+      </Box>
+    </>
   );
-}
+};
