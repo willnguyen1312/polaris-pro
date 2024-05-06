@@ -70,7 +70,7 @@ const Component = ({ items, setValue, value }: any) => {
   return (
     <>
       <Popover.Pane captureOverscroll>
-        <div>
+        <div style={{ maxHeight: 500 }}>
           {items?.map((item: any) => {
             return (
               <div
