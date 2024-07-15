@@ -1,101 +1,150 @@
-import { faker } from "@faker-js/faker";
-import { Box, Button, Popover } from "@shopify/polaris";
-import { useState } from "react";
+import {
+  IndexTable,
+  IndexTableProps,
+  LegacyCard,
+  useIndexResourceState,
+  Text,
+  Badge,
+  useBreakpoints,
+} from "@shopify/polaris";
+import { DeleteIcon } from "@shopify/polaris-icons";
 
-const items = Array.from({ length: 20 }, () => {
-  return {
-    content: faker.lorem.words(2),
-    id: faker.string.uuid(),
+function IndexTableWithMultiplePromotedBulkActionsExample() {
+  const orders = [
+    {
+      id: "1020",
+      order: "#1020",
+      date: "Jul 20 at 4:34pm",
+      customer: "Jaydon Stanton",
+      total: "$969.44",
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: "1019",
+      order: "#1019",
+      date: "Jul 20 at 3:46pm",
+      customer: "Ruben Westerfelt",
+      total: "$701.19",
+      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+    {
+      id: "1018",
+      order: "#1018",
+      date: "Jul 20 at 3.44pm",
+      customer: "Leo Carder",
+      total: "$798.24",
+      paymentStatus: <Badge progress="complete">Paid</Badge>,
+      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+    },
+  ];
+  const resourceName = {
+    singular: "order",
+    plural: "orders",
   };
-});
 
-const noop = () => {};
+  const { selectedResources, allResourcesSelected, handleSelectionChange } =
+    useIndexResourceState(orders);
 
-export default function App() {
-  const [value, setValue] = useState(0);
-  const [active, setActive] = useState(false);
+  const rowMarkup = orders.map(
+    (
+      { id, order, date, customer, total, paymentStatus, fulfillmentStatus },
+      index
+    ) => (
+      <IndexTable.Row
+        id={id}
+        key={id}
+        selected={selectedResources.includes(id)}
+        position={index}
+      >
+        <IndexTable.Cell>
+          <Text variant="bodyMd" fontWeight="bold" as="span">
+            {order}
+          </Text>
+        </IndexTable.Cell>
+        <IndexTable.Cell>{date}</IndexTable.Cell>
+        <IndexTable.Cell>{customer}</IndexTable.Cell>
+        <IndexTable.Cell>
+          <Text as="span" alignment="end" numeric>
+            {total}
+          </Text>
+        </IndexTable.Cell>
+        <IndexTable.Cell>{paymentStatus}</IndexTable.Cell>
+        <IndexTable.Cell>{fulfillmentStatus}</IndexTable.Cell>
+      </IndexTable.Row>
+    )
+  );
+
+  const promotedBulkActions: IndexTableProps["promotedBulkActions"] = [
+    {
+      content: "Create shipping labels",
+      details: "Print shipping labels for 3 orders",
+    },
+    {
+      content: "Mark as fulfilled",
+      onAction: () => console.log("Todo: implement mark as fulfilled"),
+    },
+    {
+      content: "Capture payment",
+      onAction: () => console.log("Todo: implement capture payment"),
+    },
+  ];
+  const bulkActions = [
+    {
+      content: "Add tags",
+      onAction: () => console.log("Todo: implement bulk add tags"),
+    },
+    {
+      content: "Remove tags",
+      onAction: () => console.log("Todo: implement bulk remove tags"),
+    },
+    {
+      title: "Import",
+      items: [
+        {
+          content: "Import from PDF",
+          onAction: () => console.log("Todo: implement PDF importing"),
+        },
+        {
+          content: "Import from CSV",
+          onAction: () => console.log("Todo: implement CSV importing"),
+        },
+      ],
+    },
+    {
+      icon: DeleteIcon,
+      destructive: true,
+      content: "Delete customers",
+      onAction: () => console.log("Todo: implement bulk delete"),
+    },
+  ];
 
   return (
-    <Popover
-      active={active}
-      fullHeight
-      activator={
-        <Button
-          onClick={() => {
-            setActive(!active);
-          }}
-        >
-          More actions
-        </Button>
-      }
-      onClose={noop}
-    >
-      <Component value={value} setValue={setValue} items={items} />
-    </Popover>
+    <LegacyCard>
+      <IndexTable
+        condensed={useBreakpoints().smDown}
+        resourceName={resourceName}
+        itemCount={orders.length}
+        selectedItemsCount={
+          allResourcesSelected ? "All" : selectedResources.length
+        }
+        onSelectionChange={handleSelectionChange}
+        headings={[
+          { title: "Order" },
+          { title: "Date" },
+          { title: "Customer" },
+          { title: "Total", alignment: "end" },
+          { title: "Payment status" },
+          { title: "Fulfillment status" },
+        ]}
+        bulkActions={bulkActions}
+        promotedBulkActions={promotedBulkActions}
+      >
+        {rowMarkup}
+      </IndexTable>
+    </LegacyCard>
   );
 }
 
-// function AnotherComponent() {
-//   const [selected, setSelected] = useState("today");
-
-//   const handleSelectChange = useCallback(
-//     (value: string) => setSelected(value),
-//     []
-//   );
-
-//   const options = [
-//     { label: "Today", value: "today" },
-//     { label: "Yesterday", value: "yesterday" },
-//     { label: "Last 7 days", value: "lastWeek" },
-//   ];
-
-//   return (
-//     <Box padding="150">
-//       {Array.from({ length: 20 }, (_, index) => {
-//         return (
-//           <Select
-//             key={index}
-//             label="Date range"
-//             options={options}
-//             onChange={handleSelectChange}
-//             value={selected}
-//           />
-//         );
-//       })}
-//     </Box>
-//   );
-// }
-
-const Component = ({ items, setValue, value }: any) => {
-  return (
-    <>
-      <Popover.Pane captureOverscroll>
-        <div style={{ maxHeight: 500 }}>
-          {items?.map((item: any) => {
-            return (
-              <div
-                key={item.id}
-                style={{
-                  padding: "10px",
-                  borderBottom: "1px solid #ccc",
-                }}
-              >
-                {item.content}
-              </div>
-            );
-          })}
-        </div>
-      </Popover.Pane>
-
-      <Box position="sticky" insetBlockEnd="0">
-        <Button
-          onClick={() => {
-            setValue((value: any) => value + 1);
-          }}
-        >
-          Click: {value.toString()} times
-        </Button>
-      </Box>
-    </>
-  );
-};
+export default IndexTableWithMultiplePromotedBulkActionsExample;
