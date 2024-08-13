@@ -1,11 +1,10 @@
 import {
+  Badge,
   IndexTable,
   IndexTableProps,
-  LegacyCard,
-  useIndexResourceState,
   Text,
-  Badge,
-  useBreakpoints,
+  TextField,
+  useIndexResourceState,
 } from "@shopify/polaris";
 import { DeleteIcon } from "@shopify/polaris-icons";
 
@@ -121,30 +120,40 @@ function IndexTableWithMultiplePromotedBulkActionsExample() {
   ];
 
   return (
-    <LegacyCard>
-      <IndexTable
-        condensed={useBreakpoints().smDown}
-        resourceName={resourceName}
-        itemCount={orders.length}
-        selectedItemsCount={
-          allResourcesSelected ? "All" : selectedResources.length
-        }
-        onSelectionChange={handleSelectionChange}
-        headings={[
-          { title: "Order" },
-          { title: "Date" },
-          { title: "Customer" },
-          { title: "Total", alignment: "end" },
-          { title: "Payment status" },
-          { title: "Fulfillment status" },
-        ]}
-        bulkActions={bulkActions}
-        promotedBulkActions={promotedBulkActions}
-      >
-        {rowMarkup}
-      </IndexTable>
-    </LegacyCard>
+    <TextField
+      label="Voila"
+      name="asd"
+      value="Ahehe"
+      autoComplete="off"
+      spellCheck
+      tone="magic"
+    />
   );
+  // return (
+  //   <LegacyCard>
+  //     <IndexTable
+  //       condensed={useBreakpoints().smDown}
+  //       resourceName={resourceName}
+  //       itemCount={orders.length}
+  //       selectedItemsCount={
+  //         allResourcesSelected ? "All" : selectedResources.length
+  //       }
+  //       onSelectionChange={handleSelectionChange}
+  //       headings={[
+  //         { title: "Order" },
+  //         { title: "Date" },
+  //         { title: "Customer" },
+  //         { title: "Total", alignment: "end" },
+  //         { title: "Payment status" },
+  //         { title: "Fulfillment status" },
+  //       ]}
+  //       bulkActions={bulkActions}
+  //       promotedBulkActions={promotedBulkActions}
+  //     >
+  //       {rowMarkup}
+  //     </IndexTable>
+  //   </LegacyCard>
+  // );
 }
 
 export default IndexTableWithMultiplePromotedBulkActionsExample;
