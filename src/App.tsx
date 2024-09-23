@@ -2,49 +2,61 @@ import {
   Badge,
   IndexTable,
   IndexTableProps,
+  LegacyCard,
   Text,
-  TextField,
   useIndexResourceState,
 } from "@shopify/polaris";
 import { DeleteIcon } from "@shopify/polaris-icons";
+import { useState } from "react";
 
 function IndexTableWithMultiplePromotedBulkActionsExample() {
-  const orders = [
-    {
-      id: "1020",
-      order: "#1020",
-      date: "Jul 20 at 4:34pm",
-      customer: "Jaydon Stanton",
-      total: "$969.44",
-      paymentStatus: <Badge progress="complete">Paid</Badge>,
-      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
-    },
-    {
-      id: "1019",
-      order: "#1019",
-      date: "Jul 20 at 3:46pm",
-      customer: "Ruben Westerfelt",
-      total: "$701.19",
-      paymentStatus: <Badge progress="partiallyComplete">Partially paid</Badge>,
-      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
-    },
-    {
-      id: "1018",
-      order: "#1018",
-      date: "Jul 20 at 3.44pm",
-      customer: "Leo Carder",
-      total: "$798.24",
-      paymentStatus: <Badge progress="complete">Paid</Badge>,
-      fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
-    },
-  ];
+  const [orders, setOrders] = useState(() => {
+    const orders = [
+      {
+        id: "1020",
+        order: "#1020",
+        date: "Jul 20 at 4:34pm",
+        customer: "Jaydon Stanton",
+        total: "$969.44",
+        paymentStatus: <Badge progress="complete">Paid</Badge>,
+        fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+      },
+      {
+        id: "1019",
+        order: "#1019",
+        date: "Jul 20 at 3:46pm",
+        customer: "Ruben Westerfelt",
+        total: "$701.19",
+        paymentStatus: (
+          <Badge progress="partiallyComplete">Partially paid</Badge>
+        ),
+        fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+      },
+      {
+        id: "1018",
+        order: "#1018",
+        date: "Jul 20 at 3.44pm",
+        customer: "Leo Carder",
+        total: "$798.24",
+        paymentStatus: <Badge progress="complete">Paid</Badge>,
+        fulfillmentStatus: <Badge progress="incomplete">Unfulfilled</Badge>,
+      },
+    ];
+
+    return orders;
+  });
   const resourceName = {
     singular: "order",
     plural: "orders",
   };
 
-  const { selectedResources, allResourcesSelected, handleSelectionChange } =
-    useIndexResourceState(orders);
+  const {
+    selectedResources,
+    allResourcesSelected,
+    handleSelectionChange,
+    removeSelectedResources,
+    clearSelection,
+  } = useIndexResourceState(orders);
 
   const rowMarkup = orders.map(
     (
@@ -119,41 +131,53 @@ function IndexTableWithMultiplePromotedBulkActionsExample() {
     },
   ];
 
-  return (
-    <TextField
-      label="Voila"
-      name="asd"
-      value="Ahehe"
-      autoComplete="off"
-      spellCheck
-      tone="magic"
-    />
-  );
   // return (
-  //   <LegacyCard>
-  //     <IndexTable
-  //       condensed={useBreakpoints().smDown}
-  //       resourceName={resourceName}
-  //       itemCount={orders.length}
-  //       selectedItemsCount={
-  //         allResourcesSelected ? "All" : selectedResources.length
-  //       }
-  //       onSelectionChange={handleSelectionChange}
-  //       headings={[
-  //         { title: "Order" },
-  //         { title: "Date" },
-  //         { title: "Customer" },
-  //         { title: "Total", alignment: "end" },
-  //         { title: "Payment status" },
-  //         { title: "Fulfillment status" },
-  //       ]}
-  //       bulkActions={bulkActions}
-  //       promotedBulkActions={promotedBulkActions}
-  //     >
-  //       {rowMarkup}
-  //     </IndexTable>
-  //   </LegacyCard>
+  //   <TextField
+  //     label="Voila"
+  //     name="asd"
+  //     value="Ahehe"
+  //     autoComplete="off"
+  //     spellCheck
+  //     tone="magic"
+  //   />
   // );
+
+  return (
+    <LegacyCard>
+      <button
+        onClick={() => {
+          const newOrders = orders.filter(
+            (item) => !selectedResources.includes(item.id)
+          );
+          setOrders(newOrders);
+          removeSelectedResources(selectedResources);
+          clearSelection();
+        }}
+      >
+        Buy items
+      </button>
+      <IndexTable
+        resourceName={resourceName}
+        itemCount={orders.length}
+        selectedItemsCount={
+          allResourcesSelected ? "All" : selectedResources.length
+        }
+        onSelectionChange={handleSelectionChange}
+        headings={[
+          { title: "Order" },
+          { title: "Date" },
+          { title: "Customer" },
+          { title: "Total", alignment: "end" },
+          { title: "Payment status" },
+          { title: "Fulfillment status" },
+        ]}
+        bulkActions={bulkActions}
+        promotedBulkActions={promotedBulkActions}
+      >
+        {rowMarkup}
+      </IndexTable>
+    </LegacyCard>
+  );
 }
 
 export default IndexTableWithMultiplePromotedBulkActionsExample;
