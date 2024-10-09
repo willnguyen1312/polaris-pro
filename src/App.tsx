@@ -3,6 +3,7 @@ import {
   IndexTable,
   IndexTableProps,
   LegacyCard,
+  Modal,
   Text,
   useIndexResourceState,
 } from "@shopify/polaris";
@@ -145,17 +146,34 @@ function IndexTableWithMultiplePromotedBulkActionsExample() {
   return (
     <LegacyCard>
       <button
+        disabled
         onClick={() => {
-          const newOrders = orders.filter(
-            (item) => !selectedResources.includes(item.id)
-          );
-          setOrders(newOrders);
-          removeSelectedResources(selectedResources);
-          clearSelection();
+          alert("Buy items");
+          //   const newOrders = orders.filter(
+          //     (item) => !selectedResources.includes(item.id)
+          //   );
+          //   setOrders(newOrders);
+          //   removeSelectedResources(selectedResources);
+          //   clearSelection();
         }}
       >
         Buy items
       </button>
+
+      <Modal
+        open
+        title="Voila"
+        onClose={() => {}}
+        primaryAction={{
+          content: "CLick me",
+          onAction: () => {
+            alert("Clicked");
+          },
+          disabled: true,
+        }}
+      >
+        <h1>Voila</h1>
+      </Modal>
       <IndexTable
         resourceName={resourceName}
         itemCount={orders.length}
