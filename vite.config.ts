@@ -11,7 +11,11 @@ export default defineConfig({
     //   base: __dirname,
     // }),
     // ReactInspector(),
-    react(),
+    react({
+      babel: {
+        plugins: [["module:@preact/signals-react-transform"]],
+      },
+    }),
   ],
   server: {
     open: true,

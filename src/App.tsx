@@ -11,7 +11,7 @@ import { DeleteIcon } from "@shopify/polaris-icons";
 import { useState } from "react";
 
 function IndexTableWithMultiplePromotedBulkActionsExample() {
-  const [orders, setOrders] = useState(() => {
+  const [orders] = useState(() => {
     const orders = [
       {
         id: "1020",
@@ -51,13 +51,8 @@ function IndexTableWithMultiplePromotedBulkActionsExample() {
     plural: "orders",
   };
 
-  const {
-    selectedResources,
-    allResourcesSelected,
-    handleSelectionChange,
-    removeSelectedResources,
-    clearSelection,
-  } = useIndexResourceState(orders);
+  const { selectedResources, allResourcesSelected, handleSelectionChange } =
+    useIndexResourceState(orders);
 
   const rowMarkup = orders.map(
     (
@@ -131,32 +126,9 @@ function IndexTableWithMultiplePromotedBulkActionsExample() {
       onAction: () => console.log("Todo: implement bulk delete"),
     },
   ];
-
-  // return (
-  //   <TextField
-  //     label="Voila"
-  //     name="asd"
-  //     value="Ahehe"
-  //     autoComplete="off"
-  //     spellCheck
-  //     tone="magic"
-  //   />
-  // );
-
   return (
     <LegacyCard>
-      <button
-        disabled
-        onClick={() => {
-          alert("Buy items");
-          //   const newOrders = orders.filter(
-          //     (item) => !selectedResources.includes(item.id)
-          //   );
-          //   setOrders(newOrders);
-          //   removeSelectedResources(selectedResources);
-          //   clearSelection();
-        }}
-      >
+      <button disabled onClick={() => {}}>
         Buy items
       </button>
 
