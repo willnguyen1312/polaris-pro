@@ -6,9 +6,9 @@ import ReactDOM from "react-dom/client";
 // import App from "./Playground";
 // import App from "./App";
 // import App from "./EmptyState";
-import App from "./Optmized";
+// import App from "./Optmized";
 // import App from "./Unoptimized";
-
+import App from "./Preact";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AppProvider i18n={enTranslations}>
