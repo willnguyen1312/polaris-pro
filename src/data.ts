@@ -8,7 +8,7 @@ export type Order = {
   total: string;
 };
 
-export const orders: Order[] = Array.from({ length: 100 }, () => ({
+export const orders: Order[] = Array.from({ length: 1000 }, () => ({
   id: faker.string.uuid(),
   order: faker.word.words(2),
   date: faker.date.recent().toLocaleDateString(),

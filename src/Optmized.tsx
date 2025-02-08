@@ -18,6 +18,7 @@ const resourceName = {
 
 const TableRowContent = React.memo(
   ({ order: { order, date, customer, total } }: { order: Order }) => {
+    // use context here 💩
     return (
       <>
         <IndexTable.Cell>
