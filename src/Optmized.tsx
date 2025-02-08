@@ -83,7 +83,7 @@ const Table = ({
   );
 };
 
-function SimpleIndexTableExample() {
+export default function Optmized() {
   const selectedResources = useSignal<string[]>([]);
 
   const onSelectionChangeHandler: IndexTableProps["onSelectionChange"] = (
@@ -119,13 +119,5 @@ function SimpleIndexTableExample() {
         selectedResources={selectedResources}
       />
     </Card>
-  );
-}
-
-export default function App() {
-  return (
-    <div>
-      <SimpleIndexTableExample />
-    </div>
   );
 }

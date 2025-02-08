@@ -13,7 +13,7 @@ const resourceName = {
   plural: "orders",
 };
 
-function SimpleIndexTableExample() {
+export default function Unoptimized() {
   const { selectedResources, allResourcesSelected, handleSelectionChange } =
     useIndexResourceState(orders);
 
@@ -74,5 +74,3 @@ function SimpleIndexTableExample() {
     </Card>
   );
 }
-
-export default SimpleIndexTableExample;
