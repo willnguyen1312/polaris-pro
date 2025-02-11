@@ -8,7 +8,8 @@ import ReactDOM from "react-dom/client";
 // import App from "./EmptyState";
 // import App from "./Optmized";
 // import App from "./Unoptimized";
-import App from "./Preact";
+import App from "./Control";
+
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <AppProvider i18n={enTranslations}>
