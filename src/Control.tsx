@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { TextField } from "@shopify/polaris";
 
 export default function Control() {
-  //   const [input, setInput] = useState("");
-  const [checked, setChecked] = useState(false);
+  const [input, setInput] = useState("");
 
   return (
     <div>
@@ -12,10 +12,15 @@ export default function Control() {
         onChange={(e) => setInput(e.target.value)}
       /> */}
 
-      <input
-        type="checkbox"
-        // checked={checked}
-        onChange={() => setChecked(!checked)}
+      <TextField
+        name="input"
+        autoComplete="off"
+        label="Input"
+        value={input}
+        onChange={(value) => {
+          console.log(value);
+          setInput(value);
+        }}
       />
     </div>
   );

@@ -8,7 +8,7 @@ import ReactDOM from "react-dom/client";
 // import App from "./EmptyState";
 // import App from "./Optmized";
 // import App from "./Unoptimized";
-import App from "./Control";
+import App from "./IndexTable";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
